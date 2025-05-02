@@ -2,14 +2,11 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 
-
 app.use(express.json());
-const allowedOrigins = ['https://xian-client-portal.netlify.app', 'http://localhost:3000'];
-
 app.use(cors({
-    origin: allowedOrigins
+  origin: ['https://xian-client-portal.netlify.app','http://localhost:3000'],
+  credentials: true
 }));
-
 
 // your routes...
 
