@@ -4,10 +4,9 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-  origin: ['https://xian-client-portal.netlify.app','http://localhost:3000'],
+  origin: ['https://xianclientportal.netlify.app','http://localhost:3000'],
   credentials: true
 }));
-
 // your routes...
 
 app.use('/uploads', express.static('uploads'));
