@@ -19,11 +19,20 @@ exports.getAll = async (req, res) => {
   try {
     const { stars, sort } = req.query;
     const feedbacks = await FeedbackService.getAll({ rating: stars }, sort);
-    res.json(feedbacks);
+
+    // Construct full image URLs
+    const hostUrl = 'https://xianclientportal-backend.onrender.com';
+    const updatedFeedbacks = feedbacks.map(fb => ({
+      ...fb._doc,
+      image: fb.image ? `${hostUrl}/uploads/${fb.image}` : null
+    }));
+
+    res.json(updatedFeedbacks);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
 
 exports.addComment = async (req, res) => {
   try {
